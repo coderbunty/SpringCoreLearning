@@ -1,0 +1,90 @@
+The Spring framework helps in developing loosely coupled and highly cohesive systems.
+Loose coupling is achieved by Spring’s Inversion of Control (IoC) feature and high cohesion is
+achieved by Spring’s Aspect oriented programming (AOP) feature.
+
+Spring framework started with its 'core' component providing IOC or Dependency injection capabilities.
+
+Since then it has grown more into a ecosystem of various projects.
+
+Spring core acts as a common platform for all projects.
+
+(https://www.youtube.com/watch?v=If1Lw4pLLEo)
+----------------------------------------------------------------------------------------------------
+**Dependency injection (aka Inversion of Principle - IOC)**:
+
+Every class is made up of instance variables (consider non-primitive types here) which it depends on.
+There are 2 main ways in which we can instantiate these, either from the setter method or from the
+constructor.
+
+Consider an enterprise application which contains hundreds of classes & they in turn contain
+thousands of dependencies. There will be lots of code & maintenance going into instantiating these
+dependencies. Also, there will be multiple duplicate instances being used in different objects where
+only one instance would have been sufficient. So, as we see this method of instantiating is tightly
+coupled with the objects & comes with other challenges also.
+
+Spring framework's core or IOC container takes care of dependency injection for objects.
+
+Spring framework helps in developing the loosely coupled applications by delegating the responsibility
+of acquiring the dependencies of a java class to the Spring container and allowing the java class to
+focus only on its designated functionality. The Spring container injects the dependencies into the java
+class as the container is initialized (usually on application start up).
+
+Dependency injection is aka inversion of control. Instead of java class obtaining their dependencies
+from the container, it is the container who is injecting the dependencies in the java class. So there
+is an inversion of control.
+
+(One typical use case where we would like to dependency inject the object is in case of business
+service objects. Business service classes are created for providing just the functionality or just to
+process something, they don't hold any data as such. We would typically need only one instance of these
+classes across application, so we make them a bean & have them supplied by the spring IOC container
+whenever some class has this business service as dependency.
+Similarly, data access objects (DAOs), infrastructure objects such as Hibernate session factories,
+JMS queues are also candidates for objects which can be used as beans.)
+
+The `org.springframework.beans` and `org.springframework.context` packages are the basis for Spring Framework’s
+IoC container. The BeanFactory interface provides an advanced configuration mechanism capable of managing
+any type of object. ApplicationContext is a sub-interface of BeanFactory, meaning it has more functionalities
+on top of what BeanFactory provides. => ApplicationContext is a complete superset of the BeanFactory.
+
+The `org.springframework.context.ApplicationContext` interface represents the Spring IoC container and
+is responsible for instantiating, configuring, and assembling the beans. The container gets its instructions
+on what objects to instantiate, configure, and assemble by reading configuration metadata.
+The configuration metadata is represented in XML, Java annotations, or Java code.
+
+Several implementations of the ApplicationContext interface are supplied with Spring. In stand-alone
+applications, it is common to create an instance of ClassPathXmlApplicationContext or FileSystemXmlApplicationContext.
+While XML has been the traditional format for defining configuration metadata, you can instruct the
+container to use Java annotations or code as the metadata format by providing a small amount of XML
+configuration to declaratively enable support for these additional metadata formats.
+
+Application classes are combined with configuration metadata so that, after the ApplicationContext
+is created and initialized, you have a fully configured and executable system or application.
+
+![](src/main/resources/9c67909e.png)
+
+The dependency objects that are instantiated, assembled & managed by the Spring IOC container are
+called as '**beans**'. These beans are created with the configuration metadata that we supply to the
+container.
+
+Bean definition contains the information called configuration metadata, which is needed for the
+container to know the following,
+- how to create a bean
+- bean's lifecycle details
+- bean's dependencies
+
+Spring IoC container is totally decoupled from the format in which this configuration metadata is written.
+Following are the 3 methods to provide configuration metadata to the Spring Container,
+- XML based configuration file (`<beans><bean></bean></beans>`)
+- Annotation-based configuration 
+- Java-based configuration (`@Bean`-annotated methods within a `@Configuration` class)
+
+Instantiating a container - The location path or paths supplied to an ApplicationContext constructor
+are resource strings that let the container load configuration metadata from a variety of external
+resources, such as the local file system, the Java CLASSPATH, and so on.
+`ApplicationContext context = new ClassPathXmlApplicationContext("services.xml", "daos.xml");`
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
