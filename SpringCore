@@ -88,3 +88,11 @@ resources, such as the local file system, the Java CLASSPATH, and so on.
 
 
 ----------------------------------------------------------------------------------------------------
+
+/*
+ * @Component - tells Spring that the class should be a bean (default id will be same as class name, first letter in lower case)
+ * @Configuration - tells Spring that the class will have all the configurations related to bean (similar to spring.xml file)
+ * @Bean - tells Spring that the object being returned is a Bean.
+ * @Autowired - dependency inject the bean to this variable
+ * @ComponentScan - instead of defining each & every bean in the config, component scan will tell the spring where to look for beans (components)
+*/
