@@ -91,8 +91,19 @@ resources, such as the local file system, the Java CLASSPATH, and so on.
 
 /*
  * @Component - tells Spring that the class should be a bean (default id will be same as class name, first letter in lower case)
+        @Repository, @Service, and @Controller are specializations of @Component for more specific use cases.
  * @Configuration - tells Spring that the class will have all the configurations related to bean (similar to spring.xml file)
- * @Bean - tells Spring that the object being returned is a Bean.
- * @Autowired - dependency inject the bean to this variable
+ * @Bean - tells Spring that the object being returned is a Bean. It is a method-level annotation and a direct analog of the XML element.
+           It is used with @Configuration annotated class.
+ * @Autowired - dependency inject the bean to this variable (can be used with a constructor, setter, or instance field)
  * @ComponentScan - instead of defining each & every bean in the config, component scan will tell the spring where to look for beans (components)
+ * @Value - used to assign default values to variables and method arguments.
+ * @DependsOn - can force Spring IoC container to initialize one or more beans before the bean which is annotated by @DependsOn annotation.
+ * @Primary - used to give higher preference to a bean when there are multiple beans of the same type.
+ * @Scope - used to define the scope of a @Component class or a @Bean definition. It can be either be singleton, prototype, request, session,
+            globalSession or some custom scope.
+ 
+ @Component is a generic stereotype for a Spring managed component. It turns the class into a Spring bean at the auto-scan time.
+ Classes decorated with this annotation are considered as candidates for auto-detection when using annotation-based configuration and classpath scanning.
+ @Repository, @Service, and @Controller are specializations of @Component for more specific use cases.
 */
